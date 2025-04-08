@@ -2,3 +2,5 @@
 package-lock.json
 *.jpg
 *.pptx
+.DS_Store
+
