@@ -8,6 +8,7 @@
         <meta name="description" content="Software developer based on Havana, music lover. Angular, Typescript, ">
         <meta name="robots" content="index, follow">
         <link rel="stylesheet" href="https://unpkg.com/98.css" />
+        <link rel="stylesheet" href="styles.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
         <script src="script.js" defer></script>
         <meta name="theme-color" content="#09f">
@@ -26,7 +27,8 @@
     </head>
 
     <body>
-        <div class="window" style="width: 500px">
+        <div class="window" >
+
             <div class="title-bar">
               <div class="title-bar-text">Flisol 2025</div>
               <div class="title-bar-controls">
@@ -34,32 +36,71 @@
                 <button aria-label="Close"></button>
               </div>
             </div>
+
             <div class="window-body">
                 <div class="window-body">
-                    <menu role="tablist">
-                      <li role="tab" aria-selected="true" ><a href="#tab1">Presentación</a></li>
-                      <li role="tab" aria-selected="false"><a href="#tab2">Formulario rellenable</a></li>
-                      <li role="tab" aria-selected="false"><a href="#tab3">Comprobante de pago</a></li>
+
+                    <menu role="tablist" aria-label="Sample Tabs">
+                        <button
+                            role="tab"
+                            aria-selected="true"
+                            aria-controls="panel1"
+                            id="tab-1"
+                            tabindex="0"
+                        >
+                            Presentacion
+                        </button>
+
+                        <button
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="panel2"
+                            id="tab-2"
+                            tabindex="-1"
+                        >
+                            Formulario rellenable
+                        </button>
+
+                        <button
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="panel3"
+                            id="tab-3"
+                            tabindex="-1"
+                        >
+                            Comprobante de pago
+                        </button>
                     </menu>
-                    <article id="tab1" class="tab-content">
+                    
+                    <article id="panel1" class="tab-content" role="tabpanel" tabindex="0" aria-labelledby="tab-1">
                         <div class="window">
                             <div class="window-body">
-                                <p>the tab content</p>
+                                <p>Bienvenidos</p>
                             </div>
                         </div>
                     </article>
-                    <article id="tab2" class="tab-content" hidden>
+
+                    <article id="panel2" class="tab-content" role="tabpanel" tabindex="0" aria-labelledby="tab-2" hidden>
                         <div class="window">
                             <div class="window-body">
-                                <p>the tab content</p>
+                                <p>Escriba algo aqui</p>
                             </div>
                         </div>
                     </article>
-                    <section class="field-row" style="justify-content: flex-end;padding-top: 15px;">
+
+                    <article id="panel3" class="tab-content" role="tabpanel" tabindex="0" aria-labelledby="tab-3" hidden>
+                        <div class="window">
+                            <div class="window-body">
+                                <p>Para que vea que usted pago y no hay estafa</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <section class="field-row">
                         <button>Imprimir</button>
-                      </section>
+                    </section>
                 </div>                  
             </div>
-          </div>
+        </div>
     </body>
 </html>
