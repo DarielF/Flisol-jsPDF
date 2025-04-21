@@ -9,8 +9,17 @@
         <meta name="robots" content="index, follow">
         <link rel="stylesheet" href="https://unpkg.com/98.css" />
         <link rel="stylesheet" href="styles.css">
+        <!-- jsPDF -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-        <script src="script.js" defer></script>
+        <!-- MozillaPDF -->
+        <script
+			src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/5.0.375/pdf.min.mjs"
+			type="module"
+		></script>
+        <script src="main.js" type="module" defer></script>
+        <script src="./pdf/form.js" type="module" defer></script>
+        <script src="./pdf/presentation.js" type="module" defer></script>
+        <script src="./pdf/receipt.js" type="module" defer></script>
         <meta name="theme-color" content="#09f">
 
         <!-- OPEN GRAPH -->
@@ -27,31 +36,30 @@
     </head>
 
     <body>
-        <div class="window" >
+        <div class="window">
 
             <div class="title-bar">
-              <div class="title-bar-text">Flisol 2025</div>
+              <spam class="title-bar-text">Flisol 2025</spam>
               <div class="title-bar-controls">
-                <button aria-label="Help"></button>
+                <button id="info" aria-label="Help"></button>
                 <button aria-label="Close"></button>
               </div>
             </div>
 
             <div class="window-body">
                 <div class="window-body">
-
-                    <menu role="tablist" aria-label="Sample Tabs">
-                        <button
+                    <menu role="tablist">
+                        <li
                             role="tab"
                             aria-selected="true"
                             aria-controls="panel1"
                             id="tab-1"
                             tabindex="0"
                         >
-                            Presentacion
-                        </button>
+                          Presentacion
+                        </li>
 
-                        <button
+                        <li
                             role="tab"
                             aria-selected="false"
                             aria-controls="panel2"
@@ -59,9 +67,9 @@
                             tabindex="-1"
                         >
                             Formulario rellenable
-                        </button>
+                        </li>
 
-                        <button
+                        <li
                             role="tab"
                             aria-selected="false"
                             aria-controls="panel3"
@@ -69,38 +77,64 @@
                             tabindex="-1"
                         >
                             Comprobante de pago
-                        </button>
+                        </li>
                     </menu>
                     
                     <article id="panel1" class="tab-content" role="tabpanel" tabindex="0" aria-labelledby="tab-1">
                         <div class="window">
-                            <div class="window-body">
-                                <p>Bienvenidos</p>
+                            <div id="t1" class="window-body">
+                                
                             </div>
                         </div>
                     </article>
 
                     <article id="panel2" class="tab-content" role="tabpanel" tabindex="0" aria-labelledby="tab-2" hidden>
                         <div class="window">
-                            <div class="window-body">
-                                <p>Escriba algo aqui</p>
+                            <div  id="t2" class="window-body">
+
                             </div>
                         </div>
                     </article>
 
                     <article id="panel3" class="tab-content" role="tabpanel" tabindex="0" aria-labelledby="tab-3" hidden>
                         <div class="window">
-                            <div class="window-body">
-                                <p>Para que vea que usted pago y no hay estafa</p>
+                            <div id="t3" class="window-body">
+                                
                             </div>
                         </div>
                     </article>
-
+                    
                     <section class="field-row">
-                        <button>Imprimir</button>
+                        <button id="print">Imprimir</button>
                     </section>
                 </div>                  
             </div>
         </div>
+
+        <dialog class="window" id="info-dialog">
+            <div class="title-bar">
+                <spam class="title-bar-text">Acerca de</spam>
+                <div class="title-bar-controls">
+                <button onclick="closeInfoDialog()" aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body">
+                <article class="project-info">
+                    <img class="tux" src="./resources/tux.png" alt="tux image black and white">
+                    <h4 class="my_name">Dariel Delgado</h4>
+                    <div class="thanks">
+                        <h5>Agradecimientos</h5>
+                    </div>
+                    <div class="status-bar">
+                        <p class="status-field-border">CPU Usage: 14%</p>
+                    </div>
+                </article>
+                <section>
+                    <button onclick="closeInfoDialog()">Cerrar</button>
+                </section>
+            </div>
+            
+        </dialog>
+
     </body>
 </html>
