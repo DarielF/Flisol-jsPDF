@@ -1,5 +1,7 @@
 const { jsPDF } = window.jspdf;
-import {lopi} from "./pdf/presentation.js"
+import { keynote } from "./pdf/presentation.js"
+import { fillableForm } from "./pdf/form.js";
+import { bill } from "./pdf/receipt.js";
 import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/5.0.375/pdf.min.mjs"
 
 
@@ -14,24 +16,14 @@ const tabs = tabList.querySelectorAll(':scope > [role="tab"]');
 let pages = 1;
 let tabID = 1;
 
-const prueba = new jsPDF({format:'a4',orientation:'l'});
-prueba.text("hello",10,20)
-prueba.addPage({format:'a4',orientation:'l'})
-++pages;
-prueba.text("hola",10,20)
 
-let prueba_para_ver =  prueba.output('bloburl');
-
-
-console.log(lopi)
+const allPDFs = [keynote,fillableForm,bill];
+let targetPDF = allPDFs[0];
 
 print.addEventListener("click",()=>{
-  prueba.save("pirulay.pdf");
-})
 
-const check_load = pdfjsLib.getDocument(prueba_para_ver).promise
-  .then(() => console.log("PDF loaded successfully!"))
-  .catch((err) => console.error("PDF load error:", err));
+  targetPDF.pdfObject.save(targetPDF.fileName);
+})
 
 
 const PDFStart = nameRoute => {           
@@ -89,13 +81,18 @@ const PDFStart = nameRoute => {
 }
 
 const startPdf = () => {
-  PDFStart(prueba_para_ver);
+  PDFStart(targetPDF.file);
 }
+
 
 window.addEventListener("DOMContentLoaded", () => {
   // Add a click event handler to each tab
   tabs.forEach((tab) => {
-    tab.addEventListener("click", changeTabs);
+  tab.addEventListener("click", changeTabs);
+
+  pages = targetPDF.totalPages;
+
+
   });
 
   document.querySelector(`#t${tabID}`).innerHTML = `
@@ -118,7 +115,7 @@ infoButton.addEventListener("click",()=>{
   tabList.style.display = "none";
 });
 
-const closeInfoDialog = () => {
+function closeInfoDialog(){
   dialogWindow.style.display = "none";
   tabList.style.display = "flex";
 };
@@ -144,6 +141,9 @@ function changeTabs(e) {
   
     tabID = targetTab.getAttribute("id").slice(-1);
 
+    targetPDF = allPDFs[tabID-1];
+    pages = targetPDF.totalPages;
+
     document.querySelector(`#t${tabID}`).innerHTML = `
        <div>
                                     <button id="prev${tabID}">←</button>
@@ -156,5 +156,8 @@ function changeTabs(e) {
                                     <p class="status-bar-field" id="tpages${tabID}"> not yet</p>
                                 </div>
     `;
+    
+    
+    
     startPdf();
 }
