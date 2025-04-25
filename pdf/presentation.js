@@ -4,9 +4,35 @@ let totalPages = 0;
 let newCmdLinePos = [122,67] //par de coordenadas [x,y] para cuando se quiera escribir un comando en el dibujo de la consola
 const pdfName = "Presentación FliSol 2025"
 let doc = new jsPDF({format:'a4',orientation:'l', unit: 'mm'});
-++totalPages;
 
-const generate_presentation = () =>{
+const memeImg = new Image();
+memeImg.src = './resources/meme.jpg';
+let pdfFile; // Mantener pdfFile accesible
+let resolvePdfReady; // Función para resolver la promesa
+const pdfReadyPromise = new Promise(resolve => {
+    resolvePdfReady = resolve; // Asigna la función resolvedora
+});
+
+// Define la estructura de keynote pero deja el archivo inicialmente indefinido
+export const keynote = {
+    file: undefined, // Inicializar como indefinido
+    totalPages: totalPages, // Esto también podría necesitar actualización si se agregan páginas después de la carga inicial
+    fileName: pdfName,
+    pdfObject: doc,
+    ready: pdfReadyPromise // Exporta la promesa
+};
+
+
+memeImg.onload = () => {
+    pdfFile = generate_presentation(); // Genera el PDF
+    keynote.file = pdfFile; // Actualiza la propiedad 'file' del objeto exportado
+    keynote.totalPages = doc.getNumberOfPages(); // Actualiza totalPages también
+    console.log("Image loaded and PDF generated. Keynote object updated.");
+    resolvePdfReady(); // Resuelve la promesa indicando que el PDF está listo
+    // Ahora cualquier cosa que importe keynote eventualmente verá el 'file' actualizado
+};
+
+function generate_presentation(){
 
     console.log(doc.getFontList())
 
@@ -92,7 +118,9 @@ const generate_presentation = () =>{
     doc.text("> Manejar PDF cacheado en distintos formatos binarios o codificados",58,122,{maxWidth: 155});
     doc.text("> Formularios rellenables",58,138);
 
-    
+    //-------------------------------------------
+   addNewConsolePage();
+    doc.addImage(memeImg, 'JPG', 58, 70, 160, 120);
     return doc.output('bloburl');
 }
 
@@ -135,15 +163,7 @@ const newLineConsole = (y) =>{
 }
 const addNewConsolePage = () => {
     doc.addPage();
-    ++totalPages;
     draw_console();
 }
 
-const pdfFile = generate_presentation();
-
-export const keynote = {
-    file: pdfFile,
-    totalPages: totalPages,
-    fileName: pdfName,
-    pdfObject: doc
-}
+// La exportación está ahora al principio, pero su propiedad 'file' se actualiza asincrónicamente
