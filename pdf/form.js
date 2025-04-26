@@ -22,7 +22,7 @@ logoImg.onload = () => {
 
 function generate_form() {
     // Fondo gris para secciones
-    
+
 
     doc.line(70, 10, 70, 35);
     // Logo y título
@@ -36,13 +36,13 @@ function generate_form() {
     // Sección Datos Personales
     doc.setFillColor('c0c0c0');
     doc.rect(10, 40, 190, 45, 'F');
-    doc.setFont('helvetica','bold');
+    doc.setFont('helvetica', 'bold');
     doc.setFontSize(16);
     doc.setTextColor(0, 0, 0);
     doc.text("Datos Personales", 15, 48);
 
     doc.setFontSize(14);
-    doc.setFont('helvetica','normal');
+    doc.setFont('helvetica', 'normal');
     doc.text("Nombre y Apellidos:", 15, 56);
     doc.text("¿Estás en Cuba?", 15, 64);
 
@@ -74,7 +74,7 @@ function generate_form() {
     doc.addField(nombreField);
 
     // Grupo de RadioButton: ¿Estás en Cuba?
-   
+
 
     // ComboBox: Género
     let generoField = new doc.AcroForm.ComboBox();
@@ -93,18 +93,18 @@ function generate_form() {
     let correoField = new doc.AcroForm.TextField();
     correoField.Rect = [35, 76, 90, 7];
     correoField.T = "correo";
-    nombreField.multiline = false;
+    correoField.multiline = false;
     doc.addField(correoField);
 
     // Sección Sobre la ponencia
     doc.setFillColor('c0c0c0');
     doc.rect(10, 90, 190, 45, 'F');
-    doc.setFont('helvetica','bold');
+    doc.setFont('helvetica', 'bold');
     doc.setFontSize(16);
     doc.text("Sobre la ponencia", 15, 98);
 
     doc.setFontSize(14);
-    doc.setFont('helvetica','normal');
+    doc.setFont('helvetica', 'normal');
     doc.text("Título:", 15, 106);
     let tituloField = new doc.AcroForm.TextField();
     tituloField.Rect = [58, 102, 135, 7];
@@ -123,7 +123,7 @@ function generate_form() {
     doc.setFillColor('c0c0c0');
     doc.rect(10, 140, 150, 40, 'F');
     doc.setFontSize(14);
-    doc.setFont('helvetica','normal');
+    doc.setFont('helvetica', 'normal');
     doc.text("Notas", 15, 148);
     let notasField = new doc.AcroForm.TextField();
     notasField.Rect = [15, 153, 130, 20];

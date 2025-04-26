@@ -27,15 +27,11 @@ memeImg.onload = () => {
     pdfFile = generate_presentation(); // Genera el PDF
     keynote.file = pdfFile; // Actualiza la propiedad 'file' del objeto exportado
     keynote.totalPages = doc.getNumberOfPages(); // Actualiza totalPages también
-    console.log("Image loaded and PDF generated. Keynote object updated.");
     resolvePdfReady(); // Resuelve la promesa indicando que el PDF está listo
     // Ahora cualquier cosa que importe keynote eventualmente verá el 'file' actualizado
 };
 
 function generate_presentation(){
-
-    console.log(doc.getFontList())
-
     draw_console();
    
     addNewConsolePage();
@@ -125,6 +121,7 @@ function generate_presentation(){
 }
 
 const draw_console = () => {
+    
      //consola de Ubuntu
      doc.setFont('helvetica','bold')
      doc.setFillColor('5c1644');

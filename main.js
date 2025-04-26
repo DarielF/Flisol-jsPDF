@@ -8,9 +8,6 @@ import * as pdfjsLib from "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/5.0.375
 pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/5.0.375/pdf.worker.mjs";
 const print = document.getElementById("print");
 
-const infoButton = document.getElementById("info");
-const dialogWindow = document.getElementById("info-dialog");
-
 const tabList = document.querySelector('[role="tablist"]');
 const tabs = tabList.querySelectorAll(':scope > [role="tab"]');
 let pages = 1;
@@ -29,7 +26,6 @@ print.addEventListener("click",()=>{
 const PDFStart = nameRoute => {
     // Verifica si nameRoute es válido antes de continuar
     if (!nameRoute) {
-        console.error("PDFStart called with invalid route:", nameRoute);
         // Opcionalmente, muestra un mensaje de error al usuario en el área del canvas
         const canvas = document.querySelector(`#pdf-viewer${tabID}`);
         if (canvas) {
@@ -128,15 +124,6 @@ window.addEventListener("DOMContentLoaded", async () => { // Hacer el listener a
     await startPdf(); // Espera la carga inicial del PDF
 });
 
-infoButton.addEventListener("click",()=>{
-  dialogWindow.style.display = "block";
-  tabList.style.display = "none";
-});
-
-function closeInfoDialog(){
-  dialogWindow.style.display = "none";
-  tabList.style.display = "flex";
-};
 
 // Hacer changeTabs asíncrono
 async function changeTabs(e) {

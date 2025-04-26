@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="es">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <title>Dariel Delgado </title>
+        <title>Flisol 2025 </title>
 
         <meta name="description" content="Presentación de la edición Flisol 2025 Cuba, repositorio netamente educativo">
         <meta name="robots" content="index, follow">
@@ -26,15 +26,15 @@
         <meta property="og:image" content="./resources/images/cartoon-me.png">
         <meta property="og:description" content="Presentación en Flisol 2025 sobre jsPDF">
         <meta property="og:image:alt" content="flisol">
-        <link rel="icon" type="image/png" href="./resources/icons/icon.png">
+        <link rel="icon" type="image/png" href="./resources/favicon.png">
 
     </head>
 
     <body>
-        <div class="window">
+        <div id="the-windows" class="window">
 
             <div class="title-bar">
-              <spam class="title-bar-text">Flisol 2025</spam>
+              <span class="title-bar-text">Flisol 2025</span>
               <div class="title-bar-controls">
                 <button id="info" aria-label="Help"></button>
                 <button aria-label="Close"></button>
@@ -53,7 +53,6 @@
                         >
                           Presentacion
                         </li>
-
                         <li
                             role="tab"
                             aria-selected="false"
@@ -63,7 +62,6 @@
                         >
                             Formulario rellenable
                         </li>
-
                         <li
                             role="tab"
                             aria-selected="false"
@@ -105,31 +103,5 @@
                 </div>                  
             </div>
         </div>
-
-        <dialog class="window" id="info-dialog">
-            <div class="title-bar">
-                <spam class="title-bar-text">Acerca de</spam>
-                <div class="title-bar-controls">
-                <button onclick="closeInfoDialog" aria-label="Close"></button>
-                </div>
-            </div>
-            <div class="window-body">
-                <article class="project-info">
-                    <img class="tux" src="./resources/tux.png" alt="tux image black and white">
-                    <h4 class="my_name">Dariel Delgado</h4>
-                    <div class="thanks">
-                        <h5>Agradecimientos</h5>
-                    </div>
-                    <div class="status-bar">
-                        <p class="status-field-border">CPU Usage: 14%</p>
-                    </div>
-                </article>
-                <section>
-                    <button onclick="closeInfoDialog">Cerrar</button>
-                </section>
-            </div>
-            
-        </dialog>
-
     </body>
 </html>
