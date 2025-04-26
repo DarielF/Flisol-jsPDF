@@ -73,7 +73,7 @@ O incluirlo directamente en tu HTML:
 - Consulta la documentación oficial de jsPDF para explorar todas las opciones avanzadas.
 
 ## Créditos y contacto
-- Agradecimientos: [Euri Luis] (https:///t.me/MayariMontSRL)
+- Agradecimientos: [Euri Luis](https:///t.me/MayariMontSRL)
 
 ## Contribuciones y aviso
 
